@@ -8,12 +8,29 @@ public class CircleMovement : MonoBehaviour
     private Vector2 centerPosition;
     private float angle = 0f;
 
+    private bool isPaused = false;
+    private float initialSpeed;
+
     private void Start()
     {
         centerPosition = transform.position;
+        initialSpeed = speed;
     }
 
     private void Update()
+    {
+        if (!isPaused)
+        {
+            Move();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+    }
+
+    private void Move()
     {
         float x = centerPosition.x + Mathf.Cos(angle) * radius;
         float y = centerPosition.y + Mathf.Sin(angle) * radius;
@@ -26,5 +43,25 @@ public class CircleMovement : MonoBehaviour
         {
             angle = 0f;
         }
+    }
+
+    private void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            speed = 0f;
+        }
+        else
+        {
+            speed = initialSpeed;
+        }
+    }
+
+    public void ResumeFromPause()
+    {
+        isPaused = false;
+        speed = initialSpeed;
     }
 }

@@ -8,16 +8,27 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private Vector2 moveDirection;
+    public bool isPaused = false;
 
     void Update()
     {
+        if (!isPaused)
+        {
+            ProcessInputs();
+        }
 
-        ProcessInputs();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
     }
 
     void FixedUpdate()
     {
-        Move();
+        if (!isPaused)
+        {
+            Move();
+        }
     }
 
     void ProcessInputs()
@@ -31,5 +42,23 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            rb.velocity = moveDirection * moveSpeed;
+        }
+    }
+    public void ResumeFromPause()
+    {
+        isPaused = false;
     }
 }
