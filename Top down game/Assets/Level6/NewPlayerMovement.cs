@@ -4,11 +4,10 @@ public class PlayerMovement2 : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
-    public EnemyMovement2 enemyMovement;  // —сылка на скрипт EnemyMovement1
+    public EnemyMovement2 enemyMovement;
 
     private Vector2 moveDirection;
 
-    // Update is called once per frame
     void Update()
     {
         ProcessInputs();
@@ -26,7 +25,6 @@ public class PlayerMovement2 : MonoBehaviour
 
         moveDirection = new Vector2(moveX, moveY).normalized;
 
-        // ѕередаем информацию о движении игрока в скрипт EnemyMovement1
         enemyMovement.SetEnemyMovement(moveDirection.magnitude > 0);
     }
 
