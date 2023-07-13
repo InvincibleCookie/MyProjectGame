@@ -343,7 +343,6 @@ GameObject:
   - component: {fileID: 225608369}
   - component: {fileID: 225608368}
   - component: {fileID: 225608367}
-  - component: {fileID: 225608366}
   - component: {fileID: 225608370}
   m_Layer: 5
   m_Name: Button (Legacy)
@@ -373,19 +372,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -287}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &225608366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 225608364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afeff85473dc364a93d7990d50a1e18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene: Main Menu
 --- !u!114 &225608367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,9 +416,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 225608366}
-        m_TargetAssemblyTypeName: ChooseLevel, Assembly-CSharp
-        m_MethodName: SetLevel
+      - m_Target: {fileID: 225608370}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

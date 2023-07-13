@@ -54,11 +54,14 @@ public class PlayerMovement2 : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-
+        else
+        {
+            rb.velocity = moveDirection * moveSpeed;
+        }
     }
+
     public void ResumeFromPause()
     {
         isPaused = false;
     }
-
 }
