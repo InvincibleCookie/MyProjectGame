@@ -9,6 +9,7 @@ public class realTimeTimer : MonoBehaviour
     public TextMeshPro timerText;
 
     private float timer;
+    private bool timerRunning = true;
     private PlayerMovement2 playerMovement;
 
     private void Start()
@@ -18,14 +19,22 @@ public class realTimeTimer : MonoBehaviour
 
     private void Update()
     {
-
-        timer -= Time.deltaTime;
-
-        if (timer <= 0f)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            LoadNextScene();
+            timerRunning = !timerRunning;
         }
-        UpdateTimerText();
+
+        if (timerRunning)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0f)
+            {
+                LoadNextScene();
+            }
+
+            UpdateTimerText();
+        }
     }
 
     private void LoadNextScene()
@@ -40,9 +49,9 @@ public class realTimeTimer : MonoBehaviour
             timerText.text = timer.ToString("F2");
         }
     }
+
     public void ResetTimer()
     {
         timer = timerDuration;
     }
-
 }

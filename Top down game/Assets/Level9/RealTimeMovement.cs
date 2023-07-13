@@ -9,6 +9,7 @@ public class realTimeEnemyMovement : MonoBehaviour
     public float speed = 20f;
 
     private Vector2 direction;
+    private bool isMoving = true;
 
     private void Start()
     {
@@ -17,26 +18,33 @@ public class realTimeEnemyMovement : MonoBehaviour
 
     private void Update()
     {
-
-        Vector3 currentPosition = transform.position;
-
-        float newX = currentPosition.x + speed * direction.x * Time.deltaTime;
-        float newY = currentPosition.y + speed * direction.y * Time.deltaTime;
-
-        if (newX < minX || newX > maxX)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            direction.x *= -1;
+            isMoving = !isMoving;
         }
 
-        if (newY < minY || newY > maxY)
+        if (isMoving)
         {
-            direction.y *= -1;
+            Vector3 currentPosition = transform.position;
+
+            float newX = currentPosition.x + speed * direction.x * Time.deltaTime;
+            float newY = currentPosition.y + speed * direction.y * Time.deltaTime;
+
+            if (newX < minX || newX > maxX)
+            {
+                direction.x *= -1;
+            }
+
+            if (newY < minY || newY > maxY)
+            {
+                direction.y *= -1;
+            }
+
+            newX = Mathf.Clamp(newX, minX, maxX);
+            newY = Mathf.Clamp(newY, minY, maxY);
+
+            transform.position = new Vector3(newX, newY, currentPosition.z);
         }
-
-        newX = Mathf.Clamp(newX, minX, maxX);
-        newY = Mathf.Clamp(newY, minY, maxY);
-
-        transform.position = new Vector3(newX, newY, currentPosition.z);
     }
 
     private Vector2 GetRandomDirection()

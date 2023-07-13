@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   rb: {fileID: 356054284}
-  enemyMovement: {fileID: 0}
+  enemyMovement: {fileID: 2797274345614609682, guid: 9a8c1f28b8944dd4abe3bb138e298795, type: 3}
   isPaused: 0
 --- !u!1 &417227676
 GameObject:

@@ -7,17 +7,28 @@ public class Stopwatch : MonoBehaviour
     public float targetTime;
     private float elapsedTime;
     private bool isRunning;
+    private bool isPaused;
     private EnemyCollis2[] enemies;
 
     private void Start()
     {
         isRunning = true;
+        isPaused = false;
         enemies = FindObjectsOfType<EnemyCollis2>();
     }
 
     private void Update()
     {
-        if (isRunning)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPaused = !isPaused;
+            if (!isPaused)
+            {
+                isRunning = true;
+            }
+        }
+
+        if (isRunning && !isPaused)
         {
             elapsedTime += Time.deltaTime;
             UpdateTimerUI();
