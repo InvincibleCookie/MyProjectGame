@@ -50,7 +50,6 @@ public class Stopwatch : MonoBehaviour
 
     private void ActivateActions()
     {
-        // ¬ыполн€ем действи€ при достижении времени
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
